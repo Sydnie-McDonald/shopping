@@ -60,19 +60,6 @@ async function fetchAndDisplayList() {
 
         listItemEl.textContent = `${item.quantity} ${item.item}`;
 
-        if (item.bought) {
-            listItemEl.classList.add('bought');
-        } else {
-            listItemEl.classList.add('not-bought');
-            listItemEl.addEventListener('click', async () => {
-                // change the boolean to true
-                await buyListItem(item.id);
-
-                // after we update the data, let's fetch it again and render it again
-                fetchAndDisplayList();
-            });
-        }
-
         listEl.append(listItemEl);
     }
 }
