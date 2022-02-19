@@ -43,23 +43,30 @@ function checkError({ data, error }) {
 }
 //////////////////////////////////////////////
 export async function getListItems() {
-    const response = await client.from('list').select();
     // this will only grab items that belong to this user thanks to RLS and user_id property
+    const response = await client
+        .from('list')
+        .select()
+        .order('complete')
+        .match({ user_id: client.auth.user().id, });
 
     return checkError(response);
 }
 
 export async function createListItem(item, quantity) {
-    const response = await client.from('list').insert({ title: item, quantity: quantity });
+    const response = await client
+        .from('list')
+        .insert({
+            list: item,
+            complete: false,
+            user_id: client.auth.user().id,
+            title: item,
+            quantity: quantity,
+        })
+        .single();
     return checkError(response);
 }
 
-export async function buyListItem(someId) {
-    // sets a given list item's bought property to true
-    const response = await client.from('list').update({ bought: true }).match({ id: someId });
-
-    return checkError(response);
-}
 
 export async function deleteAllListItems() {
     const response = await client.from('list').delete().match({ user_id: getUser().id });
