@@ -7,7 +7,7 @@ import {
     deleteAllListItems,
 } from '../fetch-utils.js';
 
-const form = document.querySelector('.item-form');
+const form = document.querySelector('.list-form');
 const deleteButton = document.querySelector('.delete');
 const listEl = document.querySelector('.list');
 

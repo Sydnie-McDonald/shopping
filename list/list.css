@@ -1,0 +1,13 @@
+label {
+    color: purple;
+    text-transform: uppercase;
+}
+input {
+    background-color: bisque;
+    outline: none;
+    border: none;
+}
+
+.bought {
+    text-decoration: line-through;
+}

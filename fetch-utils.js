@@ -35,35 +35,34 @@ export async function signInUser(email, password) {
 export async function logout() {
     await client.auth.signOut();
 
-    return (window.location.href = '../');
+    return (window.location.href = '/');
 }
 
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
-
+//////////////////////////////////////////////
 export async function getListItems() {
-    const response = await client.from('shopping').select();
+    const response = await client.from('list').select();
     // this will only grab items that belong to this user thanks to RLS and user_id property
 
     return checkError(response);
 }
 
 export async function createListItem(item, quantity) {
-    const response = await client.from('shopping').insert([{ item, quantity }]); // because of RLS and our default values, we add user_id for free
-
+    const response = await client.from('list').insert({ title: item, quantity: quantity });
     return checkError(response);
 }
 
 export async function buyListItem(someId) {
     // sets a given list item's bought property to true
-    const response = await client.from('shopping').update({ bought: true }).match({ id: someId });
+    const response = await client.from('list').update({ bought: true }).match({ id: someId });
 
     return checkError(response);
 }
 
 export async function deleteAllListItems() {
-    const response = await client.from('shopping').delete().match({ user_id: getUser().id });
+    const response = await client.from('list').delete().match({ user_id: getUser().id });
 
     return checkError(response);
 }
