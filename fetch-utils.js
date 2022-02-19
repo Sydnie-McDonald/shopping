@@ -57,11 +57,10 @@ export async function createListItem(item, quantity) {
     const response = await client
         .from('list')
         .insert({
-            list: item,
+            item: item,
             complete: false,
-            user_id: client.auth.user().id,
-            title: item,
             quantity: quantity,
+            user_id: client.auth.user().id,
         })
         .single();
     return checkError(response);

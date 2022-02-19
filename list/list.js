@@ -2,7 +2,6 @@ import {
     checkAuth,
     createListItem,
     getListItems,
-    buyListItem,
     logout,
     deleteAllListItems,
 } from '../fetch-utils.js';
@@ -10,6 +9,7 @@ import {
 const form = document.querySelector('.list-form');
 const deleteButton = document.querySelector('.delete');
 const listEl = document.querySelector('.list');
+
 
 checkAuth();
 

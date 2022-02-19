@@ -1,1 +1,9 @@
 /* add home page styles here */
+body{
+    background-color: aqua;
+
+}
+label{
+    font-weight:bold;
+    padding:10px;
+}
