@@ -63,7 +63,16 @@ export async function createListItem(item, quantity) {
             user_id: client.auth.user().id,
         })
         .single();
+
     return checkError(response);
+}
+export function renderItem(item) {
+    const li = document.createElement('li');
+    if (item.complete) {
+        li.classList.add('complete');
+    }
+    li.textContent = item.description;
+    return li;
 }
 
 

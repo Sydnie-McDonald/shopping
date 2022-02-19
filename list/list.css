@@ -8,6 +8,11 @@ input {
     border: none;
 }
 
-.bought {
+.complete {
     text-decoration: line-through;
+    background-color: plum;
+}
+
+.incomplete{
+    background-color:aquamarine;
 }

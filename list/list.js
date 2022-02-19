@@ -55,7 +55,6 @@ async function fetchAndDisplayList() {
     listEl.textContent = '';
     for (let item of list) {
         const listItemEl = document.createElement('p');
-
         listItemEl.classList.add('list-item');
 
         listItemEl.textContent = `${item.quantity} ${item.item}`;
