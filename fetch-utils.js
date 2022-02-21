@@ -68,12 +68,6 @@ export async function createListItem(item, quantity) {
 
 export function renderItem(item) {
     const li = document.createElement('li');
-    const listItemEl = document.createElement('p');
-    listItemEl.classList.add('list-item');
-
-    listItemEl.textContent = `${item.quantity} ${item.item}`;
-
-    listItemEl.append(listItemEl);
     if (item.complete) {
         li.classList.add('complete');
     }

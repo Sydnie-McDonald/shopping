@@ -61,5 +61,11 @@ async function fetchAndDisplayList() {
             await completeItem(item.id);
             await renderItem();
         });
+        const listItemEl = document.createElement('p');
+        listItemEl.classList.add('list-item');
+
+        listItemEl.textContent = `${item.quantity} ${item.item}`;
+
+        listEl.append(listItemEl);
     }
 }
