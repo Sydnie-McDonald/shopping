@@ -49,7 +49,6 @@ export async function getListItems() {
         .select()
         .order('complete')
         .match({ user_id: client.auth.user().id, });
-
     return checkError(response);
 }
 
@@ -66,16 +65,20 @@ export async function createListItem(item, quantity) {
 
     return checkError(response);
 }
+
 export function renderItem(item) {
     const li = document.createElement('li');
     if (item.complete) {
         li.classList.add('complete');
     }
-    li.textContent = item.description;
+    li.textContent = item.item;
     return li;
 }
 
-
+export async function completeItem(id) {
+    const response = await client.from('list').update({ complete: true }).match({ user_id: client.auth.user().id, id: id });
+    return checkError(response);
+}
 export async function deleteAllListItems() {
     const response = await client.from('list').delete().match({ user_id: getUser().id });
 
