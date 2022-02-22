@@ -58,14 +58,11 @@ async function fetchAndDisplayList() {
     for (let item of list) {
         const li = await renderItem(item);
         li.addEventListener('click', async () => {
+            console.log('clicked');
             await completeItem(item.id);
-            await renderItem();
+            fetchAndDisplayList();
         });
-        const listItemEl = document.createElement('p');
-        listItemEl.classList.add('list-item');
 
-        listItemEl.textContent = `${item.quantity} ${item.item}`;
-
-        listEl.append(listItemEl);
+        listEl.append(li);
     }
 }

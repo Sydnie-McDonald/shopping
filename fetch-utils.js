@@ -47,7 +47,7 @@ export async function getListItems() {
     const response = await client
         .from('list')
         .select()
-        .order('complete')
+        .order('id')
         .match({ user_id: client.auth.user().id, });
     return checkError(response);
 }
