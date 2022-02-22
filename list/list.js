@@ -4,6 +4,8 @@ import {
     getListItems,
     logout,
     deleteAllListItems,
+    renderItem,
+    completeItem,
 } from '../fetch-utils.js';
 
 const form = document.querySelector('.list-form');
@@ -54,11 +56,13 @@ async function fetchAndDisplayList() {
     // - loop through those items, create DOM elements, and append -- render items differently if "bought: true"
     listEl.textContent = '';
     for (let item of list) {
-        const listItemEl = document.createElement('p');
-        listItemEl.classList.add('list-item');
+        const li = await renderItem(item);
+        li.addEventListener('click', async () => {
+            console.log('clicked');
+            await completeItem(item.id);
+            fetchAndDisplayList();
+        });
 
-        listItemEl.textContent = `${item.quantity} ${item.item}`;
-
-        listEl.append(listItemEl);
+        listEl.append(li);
     }
 }
